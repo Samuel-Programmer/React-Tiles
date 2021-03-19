@@ -1,31 +1,11 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React from "react";
 import tile from "./tile.jpeg";
 import styled from "styled-components";
 
-function Tile({ id, alt, src, onTileClick, selectedTiles, matchedTiles }) {
-  const [flipped, setFlipped] = useState(false);
-
-  useLayoutEffect(() => {
-    isMatched();
-  }, [selectedTiles]);
-
-  const flip = () => {
-    setFlipped(true);
-  };
-
-  const isMatched = () => {
-    setTimeout(() => {
-      if (selectedTiles.length === 2) {
-        if (!matchedTiles.includes(alt)) {
-          setFlipped(false);
-        }
-      }
-    }, 2000);
-  };
-
+function Tile({ id, alt, src, onTileClick, tileId, isFlipped }) {
   return (
-    <Imgcontainer onClick={onTileClick}>
-      <img onClick={flip} alt={alt} src={flipped ? src : tile} id={id} />
+    <Imgcontainer onClick={() => onTileClick(tileId, id)}>
+      <img alt={alt} src={isFlipped ? src : tile} id={id} />
     </Imgcontainer>
   );
 }

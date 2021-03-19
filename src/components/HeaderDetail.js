@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-function HeaderDetail({ title }) {
-  return <Container>{title}</Container>;
+function HeaderDetail({ title, onResetClick }) {
+  return <ButtonContainer onClick={onResetClick}>{title}</ButtonContainer>;
 }
 
 export default HeaderDetail;
 
-const Container = styled.div`
+const ButtonContainer = styled.div`
   height: 6rem;
   width: 6rem;
   display: flex;
@@ -17,4 +17,11 @@ const Container = styled.div`
   border-radius: 10%;
   margin: 0.5rem;
   cursor: pointer;
+
+  :hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px #dcfffe;
+    border: 2px solid white;
+    border-radius: 10%;
+  }
 `;

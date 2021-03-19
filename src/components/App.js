@@ -11,7 +11,7 @@ function App() {
   const [randomisedImages, setRandomisedImages] = useState([]);
 
   useEffect(() => {
-    randomiseImages(images);
+    randomiseImagesWithID(images);
   }, [images]);
 
   useEffect(() => {
@@ -25,23 +25,41 @@ function App() {
     setImages(response.data.results);
   };
 
-  const randomiseImages = (images) => {
-    images = [...images, ...images];
+  const generateTileId = () => {
+    return "tile_id_" + Math.random().toString().substr(2, 8);
+  };
+
+  const randomiseImagesWithID = (images) => {
+    let randomisedImages = [...images, ...images];
     var m = images.length,
       t,
       i;
     while (m) {
       i = Math.floor(Math.random() * m--);
-      t = images[m];
-      images[m] = images[i];
-      images[i] = t;
+      t = randomisedImages[m];
+      randomisedImages[m] = randomisedImages[i];
+      randomisedImages[i] = t;
     }
-    setRandomisedImages([...images]);
+
+    let finalArray = [];
+    for (let image of randomisedImages) {
+      finalArray.push({
+        ...image,
+        tileId: generateTileId(),
+      });
+    }
+    setRandomisedImages([...finalArray]);
   };
+
+  const onResetClick = () => {
+    randomiseImagesWithID(images);
+    console.log("Ive been reset");
+  };
+
   return (
     <div>
       <Container>
-        <Header />
+        <Header onResetClick={onResetClick} />
         <Main>
           <GameBoard images={randomisedImages} />
         </Main>

@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 import HeaderDetail from "./HeaderDetail";
 
-function Header() {
+function Header({ onResetClick }) {
   return (
     <div>
       <Container>
         <HeaderDetail title={"Score"} />
-        <HeaderDetail title={"Reset"} />
+        <HeaderDetail onResetClick={onResetClick} title={"Reset"} />
         <Title>Tiles</Title>
         <HeaderDetail title={"Time"} />
         <HeaderDetail title={"Difficulty"} />
