@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-function HeaderDetail({ title }) {
-  return <ButtonContainer>{title}</ButtonContainer>;
+function TimeDisplay({ minutes, seconds }) {
+  return (
+    <ButtonContainer>
+      {seconds < 10 ? `${minutes}:0${seconds}` : `${minutes}:${seconds}`}
+    </ButtonContainer>
+  );
 }
 
-export default HeaderDetail;
+export default TimeDisplay;
 
 const ButtonContainer = styled.div`
   height: 6rem;

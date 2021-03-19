@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 import HeaderDetail from "./HeaderDetail";
+import ResetButton from "./ResetButton";
+import TimeDisplay from "./TimeDisplay";
 
-function Header({ onResetClick }) {
+function Header({ onResetClick, score, seconds, minutes }) {
   return (
     <div>
       <Container>
-        <HeaderDetail title={"Score"} />
-        <HeaderDetail onResetClick={onResetClick} title={"Reset"} />
+        <HeaderDetail title={score} />
+        <ResetButton onResetClick={onResetClick} title={"Reset"} />
         <Title>Tiles</Title>
-        <HeaderDetail title={"Time"} />
+        <TimeDisplay seconds={seconds} minutes={minutes} />
         <HeaderDetail title={"Difficulty"} />
       </Container>
     </div>

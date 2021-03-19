@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-function HeaderDetail({ title }) {
-  return <ButtonContainer>{title}</ButtonContainer>;
+function ResetButton({ title, onResetClick }) {
+  return <ButtonContainer onClick={onResetClick}>{title}</ButtonContainer>;
 }
 
-export default HeaderDetail;
+export default ResetButton;
 
 const ButtonContainer = styled.div`
   height: 6rem;
